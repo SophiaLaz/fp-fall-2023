@@ -82,10 +82,14 @@ spec = do
             thisApple tree3 list (5, 15) `shouldBe` Nothing
             thisApple tree4 list (0, 150) `shouldBe` Nothing
         it "sumOfApples" $ do
-            sumOfApples tree1 `shouldBe` (43.2 :: Float)
-            sumOfApples tree2 `shouldBe` (35.5 :: Float)
-            sumOfApples tree3 `shouldBe`  (1.8 :: Float)
-            sumOfApples tree4 `shouldBe`  (0.0 :: Float)
+            abs (43.2 - sumOfApples tree1) `shouldSatisfy` (< 1e-5)
+            abs (35.5 - sumOfApples tree2) `shouldSatisfy` (< 1e-5)
+            abs (1.8 - sumOfApples tree3) `shouldSatisfy` (< 1e-5)
+            abs (0.0 - sumOfApples tree4) `shouldSatisfy` (< 1e-5)
+            -- sumOfApples tree1 `shouldBe` (43.2 :: Float)
+            -- sumOfApples tree2 `shouldBe` (35.5 :: Float)
+            -- sumOfApples tree3 `shouldBe`  (1.8 :: Float)
+            -- sumOfApples tree4 `shouldBe`  (0.0 :: Float)
 
     let basket1 = Basket { apples = M.fromList [ ("green",[a5, a4, a6]), ("red",[a3, a1, a2]) ] }
     let basket2 = Basket { apples = M.fromList [ ("black", [a7, a8]), ("green", [a4, a6, a6]) ] }
