@@ -483,7 +483,6 @@ evalStmts []                      = return Nothing
 evalStmts [x]                     = eval (expr x)
 evalStmts (x : xs) = do
     maybeVal <- eval (expr x)
-    _ <- ask
     local (maybe id (M.insert (name x)) maybeVal) (evalStmts xs)
 
 -- evalStmts [] = pure Nothing
